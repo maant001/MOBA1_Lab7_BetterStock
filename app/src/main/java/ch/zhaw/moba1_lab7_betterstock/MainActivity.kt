@@ -14,7 +14,8 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class MainActivity : AppCompatActivity() {
-    private lateinit var textView: TextView
+    //private lateinit var textView: TextView
+    private lateinit var listView: ListView
 
     private lateinit var queue: RequestQueue
     //private lateinit var request: StringRequest
@@ -25,7 +26,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        // create request queue
+        listView = findViewById(R.id.stocklist)
+
         // define request
         queue = Volley.newRequestQueue(this)
 
@@ -34,23 +36,22 @@ class MainActivity : AppCompatActivity() {
             { response ->
 
                 var strResp = response.toString()
-                val jsonObj = JSONObject(strResp)
-                val jsonArray: JSONArray = jsonObj.getJSONArray("items")
-                //var str_stock: String = "" + jsonArray[0]
-
                 // textView
-                // TODO error is here i think
-                textView = findViewById(R.id.textView)
-                textView.text = strResp
+                var lines = strResp.replace(",", "").replace("\"", "").lines()
+                var outputStock = lines.subList(2, lines.lastIndex)
+
+                val arrayAdapter: ArrayAdapter<*>
+                arrayAdapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, outputStock)
+                listView.adapter = arrayAdapter
             },
             {
+                 error ->
+
+                    //textView!!.text = "That didn't work!"
                 // Error
             }
         )
-
         // add call to request queue
         queue.add(request)
-
-
     }
 }
