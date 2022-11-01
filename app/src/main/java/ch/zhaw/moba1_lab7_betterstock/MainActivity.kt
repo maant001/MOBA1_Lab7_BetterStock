@@ -37,7 +37,7 @@ class MainActivity : AppCompatActivity() {
 
                 var strResp = response.toString()
                 // textView
-                var lines = strResp.replace(",", "").replace("\"", "").lines()
+                var lines = strResp.replace(",", "").replace("\"", "").replace("{", "").replace("}", "").lines()
                 var outputStock = lines.subList(2, lines.lastIndex)
 
                 val arrayAdapter: ArrayAdapter<*>
