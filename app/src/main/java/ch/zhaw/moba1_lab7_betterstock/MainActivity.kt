@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var queue: RequestQueue
     //private lateinit var request: StringRequest
-    private var url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=IBM&apikey=<R97TTGEBZXRBP60R>"
+    private var url = "https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol=AAPL&apikey=<R97TTGEBZXRBP60R>"
 
     @SuppressLint("MissingInflatedId", "ResourceType")
     override fun onCreate(savedInstanceState: Bundle?) {
